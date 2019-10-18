@@ -2,8 +2,24 @@
   "name": "node-sys",
   "version": "0.0.1",
   "description": "Node-sys is a new project based on nodejs to extract and transmit technical and application metrics such as telegraf and exporters",
-  "main": "src/main.ts",
+  "keywords": [
+    "monitor",
+    "metric",
+    "influxdb",
+    "prometheus"
+  ],
+  "main": "index",
+  "files": [
+    "index.js",
+    "typings/index.d.ts"
+  ],
+  "typings": "typings/index.d.ts",
   "repository": "https://github.com/algenty/node-sys",
+  "scripts": {
+    "lint": "eslint index.js",
+    "test": "node test/run.js && npm run test-typings",
+    "test-typings": "tsc -p tsconfig.json"
+  },
   "author": "Arnaud GENTY <arnaud.genty@gmail.com>",
   "license": "MIT",
   "private": false,
