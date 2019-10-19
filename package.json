@@ -17,8 +17,9 @@
   "repository": "https://github.com/algenty/node-sys",
   "scripts": {
     "lint": "eslint index.js",
-    "test": "node test/run.js && npm run test-typings",
-    "test-typings": "tsc -p tsconfig.json"
+    "test": "node test/run.js && yarn run test-typings",
+    "test-typings": "tsc -p tsconfig.json",
+    "start": "node  index"
   },
   "author": "Arnaud GENTY <arnaud.genty@gmail.com>",
   "license": "MIT",
@@ -26,12 +27,17 @@
   "devDependencies": {
     "@types/node": "^12.11.1",
     "commander": "^3.0.2",
-     "express": "^4.17.1",
+    "express": "^4.17.1",
     "grunt": "^1.0.4",
     "influx": "^5.4.2",
     "jest": "^24.9.0",
+    "net-ping": "^1.2.3",
     "systeminformation": "^4.14.13",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "express-status-monitor": "^1.2.7",
+    "nodejs-dashboard": "^0.4.3"
   }
 }

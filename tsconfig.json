@@ -1,20 +1,13 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "lib": [
-            "es6"
-        ],
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "strictNullChecks": false,
-        "types": [
-            "node"
-        ],
-        "noEmit": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "files": [
-        "typings/index.d.ts",
-        "typings/node-sys.test.ts"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es6"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "types": ["node"],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "files": ["typings/index.d.ts", "typings/node-sys.test.ts"]
 }
