@@ -6,4 +6,4 @@ Why ?
  - Because nodejs is very rich
  - Becouse nodejs is simply
  
- /!\ Do not install or test it, it not work at this time
+ /!\ Do not install or test it, it not works at this time
