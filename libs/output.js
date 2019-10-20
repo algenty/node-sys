@@ -1,24 +1,41 @@
 const NS_CONSTANTS = require('./constants');
 class NsOutput {
   constructor(nsOutOps) {
-    this._nsOutOps = {
-      type : this.constructor.name,
-      name : 'DEFAULT'
-    }
-
-    this._nsOutStats = this._nsOutStatsFactory();
-    this._nsOutLine = this._nsOutLineFactory();
-    this._nsOutStatus = this._nsOutStatusFactory();
+    this._nsOutOps = NsOutput.getDefaultOptions();
+    this._nsOutStats = NsOutput._nsOutStatsFactory();
+    this._nsOutLine = NsOutput._nsOutLineFactory();
+    this._nsOutStatus = NsOutput._nsOutStatusFactory();
 
   }
 
-  _nsOutStatusFactory() {
+  static getDefaultOptions() {
+    return {
+      type: NsOutput.constructor.name,
+      name: "No name",
+      interval: 5000,
+      bufferSize: 100,
+      debug: false
+    };
+  }
+
+  getOptions() {
+    return this._nsOutOps;
+  }
+
+  static New(outputName) {
+    let childName = (outputName !=null && outputName.length > 0) ? outputName : this.prototype.constructor.name;
+    let output = require(`../outputs/${childName}`);
+    var nsOutput = new output();
+    return nsOutput;
+  }
+
+  static _nsOutStatusFactory() {
     return {
       ctrl: NS_CONSTANTS.CTRL.STOP,
     };
   }
 
-  _nsOutLineFactory() {
+  static _nsOutLineFactory() {
     return {
       status: NS_CONSTANTS.STATUS.UNKNOWN,
       beginAt: Date.now(),
@@ -28,7 +45,7 @@ class NsOutput {
     };
   }
 
-  _nsOutStatsFactory() {
+  static _nsOutStatsFactory() {
     return {
       startAt: null,
       stopAt: null,
@@ -42,6 +59,16 @@ class NsOutput {
     };
   }
 
+  setOptions(nsOptions){
+    this._nsOutOps = nsOptions;
+    return this;
+  }
+
+  setName(str) {
+    this.getOptions().name = str;
+    return this;
+  }
+
   exec(out) {
     // FOR CHILDREN
   }
@@ -52,7 +79,7 @@ class NsOutput {
       this._nsOutLine.status !== NS_CONSTANTS.STATUS.INPROGRESS
     ) {
       this._nsOutStats.execCount++;
-      let currNsLine = this._nsOutLineFactory();
+      let currNsLine = NsOutput._nsOutLineFactory();
       this._nsOutLine = currNsLine;
       this._nsOutLine.status = NS_CONSTANTS.STATUS.INPROGRESS;
       currNsLine.result = this.exec(nsOut.result);
@@ -69,19 +96,22 @@ class NsOutput {
   start() {
     this._nsOutStatus.ctrl = NS_CONSTANTS.CTRL.START;
     this._nsOutStats.startAt = Date.now();
-    this.open();
+    this.init();
+    return this;
   }
 
   stop() {
     this.close();
   }
 
-  open() {
-
+  init() {
+    console.log("INIT");
+    return this;
   }
 
   close() {
-    
+    console.log("CLOSE");
+    return this;
   }
 
   failed() {

@@ -1,24 +1,22 @@
-const NsOutput = require('../libs/output');
+const NsOutput = require("../libs/output");
 
-
-class StdOutput extends NsOutput{
-  constructor(stdOutOpions){
+class StdOutput extends NsOutput {
+  constructor(stdOutOpions) {
     super(stdOutOpions);
   }
 
-  open() {
-    console.log("Init of StdOutput ");
-  }
+  // init() {
+  //   console.log("INIT");
+  // }
+
+  // close() {
+  //   console.log("CLOSE");
+  // }
 
   exec(out) {
     console.log(JSON.stringify(out));
     this.success();
   }
-
-  close() {
-    console.log("Close of StdOutput");
-  }
-
 }
 
 module.exports = StdOutput;

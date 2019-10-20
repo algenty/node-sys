@@ -32,12 +32,9 @@
     "influx": "^5.4.2",
     "jest": "^24.9.0",
     "net-ping": "^1.2.3",
-    "systeminformation": "^4.14.13",
+    "system-health-monitor": "^1.2.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
   },
-  "dependencies": {
-    "express-status-monitor": "^1.2.7",
-    "nodejs-dashboard": "^0.4.3"
-  }
+  "dependencies": {}
 }

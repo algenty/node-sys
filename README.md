@@ -4,7 +4,6 @@ The idea is to use the astronimic library that nodejs and npm offer to capture a
 Why ?
  - Because telegraf and node exporter not work on the old systems
  - Because nodejs is very rich
- - Becouse nodejs is simply
+ - Becouse nodejs is simply or not...
  - Because i need to send any metrics to several storages like influxd, prometheus, files, ...
- 
- /!\ Do not install or test it, it not works at this time
+
