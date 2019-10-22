@@ -9,6 +9,7 @@
     "prometheus"
   ],
   "main": "index",
+  "bin": "index.js",
   "files": [
     "index.js",
     "typings/index.d.ts"

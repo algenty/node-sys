@@ -5,6 +5,7 @@ class NsEntry {
     this._nsEntStats = NsEntry._nsEntStatsFactory();
     this._nsEntLine = NsEntry._nsEntLineFactory();
     this._nsEntStatus = NsEntry._nsEntStatusFactory();
+    this._nsEntOutputs = NsEntry._nsEntStatusFactory();
 
   }
 
@@ -33,6 +34,10 @@ class NsEntry {
     return {
       ctrl: NS_CONSTANTS.CTRL.STOP,
     };
+  }
+
+  static _nsEntOutputsFactory() {
+    return [];
   }
 
   static _nsEntLineFactory() {
@@ -67,6 +72,14 @@ class NsEntry {
   setName(str) {
     this.getOptions().name = str;
     return this;
+  }
+
+  getOutputs() {
+    return this._nsOutputsArray;
+  }
+
+  addOutput(output) {
+    this.getOutputs().push(output);
   }
 
   exec(ent) {
