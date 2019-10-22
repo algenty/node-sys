@@ -73,7 +73,7 @@ class NsEntry {
     // FOR CHILDREN
   }
 
-  async _out(nsEnt) {
+  async _ent(nsEnt) {
     if (
       this._nsEntStatus.ctrl === NS_CONSTANTS.CTRL.START &&
       this._nsEntLine.status !== NS_CONSTANTS.STATUS.INPROGRESS
@@ -81,7 +81,7 @@ class NsEntry {
       this._nsEntStats.execCount++;
       let currNsLine = NsEntry._nsEntLineFactory();
       this._nsEntLine = currNsLine;
-      this._nsEntLine.status = NS_CONSTANTS.STATUS.INPROGRESS;
+      currNsLine.status = NS_CONSTANTS.STATUS.INPROGRESS;
       currNsLine.result = this.exec(nsEnt.result);
       currNsLine.endAt = Date.now();
       if (this._nsEntLine.status === NS_CONSTANTS.STATUS.INPROGRESS) {
@@ -101,7 +101,9 @@ class NsEntry {
   }
 
   stop() {
+    this._nsEntStats.endAt = Date.now();
     this.close();
+    return this;
   }
 
   init() {
@@ -117,12 +119,15 @@ class NsEntry {
   failed() {
     this._nsEntLine.status = NS_CONSTANTS.STATUS.FAILED;
     this._nsEntStats.failedCount++;
+    return this;
   }
 
   success() {
     this._nsEntLine.status = NS_CONSTANTS.STATUS.SUCCESS;
     this._nsEntStats.successCount++;
+    return this;
   }
+  
   getStatistics() {
     return this._nsEntStats;
   }
